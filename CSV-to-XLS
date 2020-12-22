@@ -1,0 +1,29 @@
+import xlwt
+import csv
+import sys, os
+files = []
+def CsvConvert():
+    #Uses the path "directory" and attatches all file names that end is csv to it
+    directory = r'C:\Users\mt.reis\Desktop\TBDPython\Input'
+    for filename in os.listdir(directory):
+        if filename.upper().endswith(".CSV"):
+            files.append(os.path.join(directory, filename))
+        else:
+            continue
+
+#files = ['\input\Input-FTP__AM320291__BPOACHBIWTB17.csv']
+
+    #runs through the files and transfers them into xls file
+    for f in files:
+        i = open(f, 'r')
+        g = csv.reader((i), delimiter=",")
+        wb = xlwt.Workbook()
+        s = wb.add_sheet("Sheet 1")
+
+        for rowf, row in enumerate(g):
+            for colf, value in enumerate(row):
+                s.write(rowf,colf,value)
+        wb.save(f + ".xls")
+
+if __name__ == "__main__":
+    CsvConvert()
