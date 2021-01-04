@@ -1,0 +1,13 @@
+SQL QUERIES 
+Author: @MichaelReis
+
+"We want to return co and name from CInfo if the
+company has an invoice in SInvoice in the last 
+6 months (use distinct since we don't want multiples).
+I'll give you the next part when you get this. 
+Use a formula to get six months ago instead of entering 
+a manual date"
+
+SELECT Distinct c.co, c.name
+FROM Cinfo c, SInvoices s
+WHERE s.invoiceDate > DATEADD(month, -6, GETDATE()) and s.co = c.co
